@@ -1,54 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
+import SearchForm from 'components/SearchForm/SearchForm';
 import { fetchByQuery } from '../../servises/Api';
 import s from './Movies.module.css';
 
 export default function Movies() {
-  const [query, setQuery] = useState('');
-  const [films, setFilms] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('query');
+  const [query, setQuery] = useState(searchParams.get('query') ?? '');
+  const [films, setFilms] = useState([]);
 
-  const fetch = async () => {
-    try {
-      if (searchQuery) {
-        const films = await fetchByQuery(query);
-        setFilms(films);
-      }
-    } catch {
-      console.error("Сan't find such a movie");
-    }
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const searchQuery = query.trim().toLocaleLowerCase();
-    if (searchQuery === '') {
-      alert('Enter a query');
+  useEffect(() => {
+    if (!query) {
       return;
     }
-    setSearchParams({ query: searchQuery });
-    fetch(searchQuery);
-  };
-  const handleChange = e => {
-    setQuery(e.currentTarget.value);
+    fetchByQuery(query).then(response => setFilms(response));
+  }, [query]);
+
+  const handleSubmitForm = query => {
+    setQuery(query);
+    setSearchParams({ query: query });
   };
 
   return (
     <div>
-      <form className={s.SearchForm} onSubmit={handleSubmit}>
-        <input
-          onChange={handleChange}
-          className={s.SearchFormInput}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search Movies"
-        />
-        <button type="submit" className={s.SearchFormButton}>
-          <span className={s.SearchFormButtonLabel}>Search</span>
-        </button>
-      </form>
+      <SearchForm onSubmit={handleSubmitForm}></SearchForm>
       {films && (
         <ul className={s.listHome}>
           {films.map(film => (
