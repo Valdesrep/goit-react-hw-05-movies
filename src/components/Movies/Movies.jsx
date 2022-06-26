@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { fetchByQuery } from '../../servises/Api';
 import s from './Movies.module.css';
