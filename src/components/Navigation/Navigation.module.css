@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid gray;
+}
+
+.navLink {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: black;
+  font-size: 20px;
+}
+
+.active {
+  color: rgb(8, 140, 216);
+  composes: navLink;
+}
