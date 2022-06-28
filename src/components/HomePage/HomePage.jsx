@@ -16,7 +16,7 @@ export default function HomePage() {
       }
     }
     fetch();
-  }, [films]);
+  }, []);
 
   return (
     <>

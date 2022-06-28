@@ -27,7 +27,7 @@ export default function Movies() {
         <ul className={s.listHome}>
           {films.map(film => (
             <li key={film.id} className={s.itemHome}>
-              <Link to={`movies/${film.id}`} className={s.linkHome}>
+              <Link to={`${film.id}`} className={s.linkHome}>
                 <img
                   className={s.imgHome}
                   src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}

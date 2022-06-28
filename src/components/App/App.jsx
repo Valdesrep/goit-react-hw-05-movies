@@ -2,8 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import s from './App.module.css';
 import Navigation from '../Navigation/Navigation';
 import HomePage from '../HomePage/HomePage';
-import Movies from 'components/Movies/Movies';
-import MoviesDetails from 'components/MoviesDetails/MoviesDetails';
+import Movies from '../Movies/Movies';
+import MoviesDetails from '../MoviesDetails/MoviesDetails';
 
 export const App = () => {
   return (
