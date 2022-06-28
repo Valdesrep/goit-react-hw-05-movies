@@ -20,7 +20,6 @@ export default function Movies() {
     setQuery(query);
     setSearchParams({ query: query });
   };
-
   return (
     <div>
       <SearchForm onSubmit={handleSubmitForm}></SearchForm>
