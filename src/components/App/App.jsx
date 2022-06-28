@@ -3,7 +3,8 @@ import s from './App.module.css';
 import Navigation from '../Navigation/Navigation';
 import HomePage from '../HomePage/HomePage';
 import Movies from 'components/Movies/Movies';
-import MovieDetails from '../MovieDetails/MovieDetails';
+import MoviesDetails from 'components/MoviesDetails/MoviesDetails';
+
 export const App = () => {
   return (
     <>
@@ -12,7 +13,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<Movies />} />
-          <Route path="movies/:movieId" element={<MovieDetails />} />
+          <Route path="movies/:movieId" element={<MoviesDetails />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </div>
