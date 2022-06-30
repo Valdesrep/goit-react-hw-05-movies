@@ -20,12 +20,12 @@ async function fetchById(id) {
   return response.data;
 }
 async function fetchCredits(id) {
-  const url = `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}language=en-US`;
+  const url = `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
   const response = await axios.get(url);
   return response.data.cast;
 }
 async function fetchReviews(id) {
-  const url = `${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}language=en-US&page=1`;
+  const url = `${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
   const response = await axios.get(url);
   return response.data.results;
 }
