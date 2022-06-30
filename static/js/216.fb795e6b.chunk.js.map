@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/216.fb795e6b.chunk.js","mappings":"oNAEe,SAASA,IACtB,OAAO,yBAAMC,IAAAA,OAAAA,QAAwB","sources":["components/NotFound/NotFound.jsx"],"sourcesContent":["import Notiflix from 'notiflix';\n\nexport default function NotFound() {\n  return <div>{Notiflix.Notify.failure('NotFound')}</div>;\n}\n"],"names":["NotFound","Notiflix"],"sourceRoot":""}
