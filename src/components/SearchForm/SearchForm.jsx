@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import s from './SearchForm.module.css';
 import Notiflix from 'notiflix';
+import propTypes from 'prop-types';
 
-export default function SearchForm({ onSubmit }) {
+export default function SearchForm({ onSubmit, inputQuery }) {
   const [query, setQuery] = useState('');
 
   const handleSubmit = e => {
@@ -18,6 +19,9 @@ export default function SearchForm({ onSubmit }) {
   };
 
   const handleChange = e => {
+    if (inputQuery) {
+      setQuery(inputQuery);
+    }
     setQuery(e.currentTarget.value);
   };
 
@@ -31,7 +35,7 @@ export default function SearchForm({ onSubmit }) {
         autoComplete="off"
         autoFocus
         placeholder="Search Movies"
-        value={query}
+        value={query || inputQuery}
       />
       <button type="submit" className={s.SearchFormButton}>
         <span className={s.SearchFormButtonLabel}>Search</span>
@@ -39,3 +43,7 @@ export default function SearchForm({ onSubmit }) {
     </form>
   );
 }
+SearchForm.propTypes = {
+  onSubmit: propTypes.func.isRequired,
+  inputQuery: propTypes.string,
+};

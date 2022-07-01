@@ -23,7 +23,7 @@ export default function Movies() {
   };
   return (
     <div>
-      <SearchForm onSubmit={handleSubmitForm}></SearchForm>
+      <SearchForm onSubmit={handleSubmitForm} inputQuery={query}></SearchForm>
       {films && (
         <ul className={s.listHome}>
           {films.map(film => (
