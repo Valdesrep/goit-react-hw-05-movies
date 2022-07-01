@@ -3,8 +3,8 @@ import { useParams, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { fetchById } from 'servises/Api';
 import s from './MoviesDetails.module.css';
 
-const Cast = lazy(() => import('../Cast/Cast'));
-const Reviews = lazy(() => import('../Reviews/Reviews'));
+const Cast = lazy(() => import('../../components/Cast/Cast'));
+const Reviews = lazy(() => import('../../components/Reviews/Reviews'));
 
 export default function MoviesDetails() {
   const { movieId } = useParams();
