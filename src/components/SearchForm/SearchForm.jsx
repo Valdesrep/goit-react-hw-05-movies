@@ -1,4 +1,4 @@
-import { useState, useSearchParams } from 'react';
+import { useState } from 'react';
 import s from './SearchForm.module.css';
 import Notiflix from 'notiflix';
 
