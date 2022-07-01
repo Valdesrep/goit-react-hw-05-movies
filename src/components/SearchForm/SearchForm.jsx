@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useSearchParams } from 'react';
 import s from './SearchForm.module.css';
+import Notiflix from 'notiflix';
 
 export default function SearchForm({ onSubmit }) {
   const [query, setQuery] = useState('');
@@ -9,7 +10,7 @@ export default function SearchForm({ onSubmit }) {
 
     const searchQuery = query.trim().toLocaleLowerCase();
     if (searchQuery === '') {
-      alert('Enter a query');
+      Notiflix.Notify.failure('Please enter a request');
       return;
     }
 
@@ -23,12 +24,14 @@ export default function SearchForm({ onSubmit }) {
   return (
     <form className={s.SearchForm} onSubmit={handleSubmit}>
       <input
+        name="query"
         onChange={handleChange}
         className={s.SearchFormInput}
         type="text"
         autoComplete="off"
         autoFocus
         placeholder="Search Movies"
+        value={query}
       />
       <button type="submit" className={s.SearchFormButton}>
         <span className={s.SearchFormButtonLabel}>Search</span>

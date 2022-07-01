@@ -44,4 +44,4 @@ export default function Cast({ id }) {
   );
 }
 
-Cast.propTypes = { id: propTypes.number.isRequired };
+Cast.propTypes = { id: propTypes.string.isRequired };

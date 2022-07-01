@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { fetchByQuery } from '../../servises/Api';
 import s from './Movies.module.css';
@@ -8,6 +8,7 @@ export default function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('query') ?? '');
   const [films, setFilms] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     if (!query) {
@@ -27,7 +28,11 @@ export default function Movies() {
         <ul className={s.listHome}>
           {films.map(film => (
             <li key={film.id} className={s.itemHome}>
-              <Link to={`${film.id}`} className={s.linkHome}>
+              <Link
+                to={`${film.id}`}
+                state={{ from: location }}
+                className={s.linkHome}
+              >
                 <img
                   className={s.imgHome}
                   src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}

@@ -1,5 +1,5 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
-import { useParams, useNavigate, Link, Route, Routes } from 'react-router-dom';
+import { useParams, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { fetchById } from 'servises/Api';
 import s from './MoviesDetails.module.css';
 
@@ -9,11 +9,7 @@ const Reviews = lazy(() => import('../Reviews/Reviews'));
 export default function MoviesDetails() {
   const { movieId } = useParams();
   const [film, setFilm] = useState(null);
-  let navigate = useNavigate();
-
-  function handleClick() {
-    navigate(-1);
-  }
+  const location = useLocation();
 
   useEffect(() => {
     async function fetch() {
@@ -26,12 +22,14 @@ export default function MoviesDetails() {
     }
     fetch();
   }, [movieId]);
+
+  const path = location?.state?.from ?? '/';
   return (
     film && (
       <>
-        <button className={s.back} onClick={handleClick}>
-          Go back
-        </button>
+        <Link to={path} className={s.back}>
+          {'Go Back'}
+        </Link>
         <div className={s.box}>
           <div className={s.thumb}>
             <img
@@ -62,12 +60,12 @@ export default function MoviesDetails() {
         </div>
         <ul className={s.List}>
           <li>
-            <Link to="cast" className={s.Link}>
+            <Link to="cast" className={s.Link} state={{ from: path }}>
               Cast
             </Link>
           </li>
           <li>
-            <Link to="reviews" className={s.Link}>
+            <Link to="reviews" className={s.Link} state={{ from: path }}>
               Reviews
             </Link>
           </li>
