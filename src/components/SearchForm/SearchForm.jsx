@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import s from './SearchForm.module.css';
 import Notiflix from 'notiflix';
 import propTypes from 'prop-types';
 
-export default function SearchForm({ onSubmit, inputQuery }) {
-  const [query, setQuery] = useState('');
+export default function SearchForm({ onSubmit }) {
+  const [searchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get('query') ?? '');
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -19,9 +21,6 @@ export default function SearchForm({ onSubmit, inputQuery }) {
   };
 
   const handleChange = e => {
-    if (inputQuery) {
-      setQuery(inputQuery);
-    }
     setQuery(e.currentTarget.value);
   };
 
@@ -35,7 +34,7 @@ export default function SearchForm({ onSubmit, inputQuery }) {
         autoComplete="off"
         autoFocus
         placeholder="Search Movies"
-        value={query || inputQuery}
+        value={query}
       />
       <button type="submit" className={s.SearchFormButton}>
         <span className={s.SearchFormButtonLabel}>Search</span>
